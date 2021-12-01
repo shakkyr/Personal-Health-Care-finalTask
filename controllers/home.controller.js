@@ -4,9 +4,11 @@ const doctorsModel = require('../models/doctors.model')
 
 exports.getHome = (req, res) => {
     
-    clientsModel.getAllClients().then(clients => {
-        res.render('clients', {
-            clients: clients
+    clientsModel.getAllClients().then(() => {
+        console.log(req.session.userId);
+        res.render('index', {
+            isUser: false
+           
         })
     })
 }

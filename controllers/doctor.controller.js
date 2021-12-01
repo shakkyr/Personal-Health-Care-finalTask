@@ -13,7 +13,8 @@ exports.getDoctorById = (req, res,next) => {
     let id = req.params.id;
     doctorsModel.getDoctorById(id).then(doctor => {
         res.render('doctor' , {
-            doctor : doctor
+            doctor : doctor,
+            isUser: false
         })
     })
 }

@@ -63,7 +63,7 @@
                           <a href="/doctor/<%= doctor._id %>"><%= doctor.name %></a>
                       </h5>
                       <p>Specalist: <b><%=doctor.specalist  %></b></p>
-                      <form action="/doctor" method="POST">
+                      <form action="/doctor/<%= doctor._id %>" method="GET">
                           <input type="submit" value="Visit Profile" class="btn btn-primary">
 
                       </form>

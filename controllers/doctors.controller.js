@@ -12,8 +12,11 @@ exports.getDoctor = (req, res) => {
     if (specalise && validSpecalist.includes(specalise)) doctorsPromise = doctorsModel.getDoctorsByCategory(specalise)
     else doctorsPromise = doctorsModel.getAllDoctors()
     doctorsPromise.then(doctors => {
+        console.log(req.session.userId);
         res.render("doctors", {
-            doctors : doctors
+            doctors : doctors,
+            isUser: req.session.userId
+
         }) 
     })
 }
