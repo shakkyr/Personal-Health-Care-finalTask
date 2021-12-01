@@ -44,5 +44,39 @@ exports.createNewClient = (username, email, password) => {
             mongoose.disconnect()
             reject(err)})
     })
+}
 
+exports.login = (email, password) => {
+    //check for email
+    // no ==> error
+    //yes == check password
+    //false ==> error
+    // true ==> set session
+
+
+    return new Promise((resolve, reject)=> {
+        mongoose
+        .connect(DB_URL).then(() => Client.findOne({email : email}))
+        .then(client => {
+            if (!client) {
+                mongoose.disconnect()
+                reject('there is no user matches this email')
+            } else {
+                bcrypt.compare(password, client.password)
+                .then(same => {
+                    if(!same) {
+                        mongoose.disconnect();
+                        reject('password is incorrect')
+                    } else {
+                        mongoose.disconnect();
+                        resolve(client._id);
+                    }
+                })
+            }
+        }).catch(err => {
+            mongoose.disconnect();
+            reject(err)
+        })
+        
+    })
 }
