@@ -1,5 +1,5 @@
 const authModel = require('../models/auth.model');
-
+const validationResult = require('express-validator').validationResult;
 
 exports.getSignup = (req, res, next) =>{
     res.render('signup')
@@ -7,6 +7,7 @@ exports.getSignup = (req, res, next) =>{
 
 
 exports.postSignup = (req, res, next)=> {
+    return console.log(validationResult(req));
     authModel
     .createNewClient(req.body.username , req.body.email, req.body.password)
     .then(()=>res.redirect('/login'))
