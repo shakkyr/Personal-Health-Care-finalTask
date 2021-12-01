@@ -62,3 +62,20 @@ exports.getDoctorById = (id) => {
         .catch(err=> reject(err))
     })
 }
+
+exports.getFirstDoctor = () => {
+    return new Promise((resolve,reject) => {
+        mongoose
+        .connect(DB_URL)
+        .then(() => {
+            return Doctor.findOne({});
+        })
+        .then(doctor => {
+            mongoose.disconnect();
+            resolve(doctor)
+        })
+        .catch(err=>{
+            mongoose.disconnect()
+             reject(err)})
+    })
+}

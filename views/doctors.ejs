@@ -47,7 +47,11 @@
 
     </form>
 
-
+    <% if(doctors.length === 0) { %>
+        <div class="alert alert-danger">
+            We don't hava available doctorwith this specalise right now
+        </div>  
+        <% } else { %>
 
     <div class="row">
         <% for (let doctor of doctors) { %>
@@ -69,6 +73,7 @@
 
         <% } %>
         </div>
+        <% } %>
     </div>
 </div>
 
